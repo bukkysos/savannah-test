@@ -52,8 +52,6 @@ export const UserPost: React.FC = () => {
         }
     }
 
-    console.log({ publishingStatus })
-
     return (
         <div className="min-h-screen bg-white px-2 sm:px-6 py-4 sm:py-8">
             <NewPostModal

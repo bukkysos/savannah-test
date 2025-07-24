@@ -35,7 +35,7 @@ export const UsersList: React.FC = () => {
             {usersData?.data?.data &&
                 <Pagination
                     currentPage={pageNo}
-                    totalPages={usersData?.data?.totalPages}
+                    totalPages={usersData?.data?.pagination?.totalPages}
                     onPageChange={setPageNo}
                 />
             }

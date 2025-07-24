@@ -20,6 +20,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
       }
     }
+    console.log({totalPages})
     return pages;
   };
 
