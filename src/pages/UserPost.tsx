@@ -30,7 +30,7 @@ export const UserPost: React.FC = () => {
         try {
             const response = await handleUserPostAction(myData?.id, values);
             if (response?.showing && response?.type === "success") {
-                // refetch();
+                refetch();
                 setPublishingStatus({
                     success: response?.type === "success",
                     error: response?.type === "success",
