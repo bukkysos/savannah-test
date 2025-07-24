@@ -10,7 +10,7 @@ export const UsersList: React.FC = () => {
 
     const { data: usersData, isLoading, isError, error, isSuccess } = useQuery({
         queryKey: ['users', pageNo],
-        queryFn: () => handleFetchUsers(`http://localhost:80/users?page=${pageNo}`),
+        queryFn: () => handleFetchUsers(`https://savannah-backend-production.up.railway.app/users?page=${pageNo}`),
         enabled: !!pageNo,
         placeholderData: (prevData) => prevData,
         refetchOnWindowFocus: false

@@ -63,7 +63,7 @@ export const handleFetchUsers = async (url: string) => {
 export const handleFetchAllPostsByUser = async (userId: string) => {
     const response = await apiRequest(
         'get',
-        `http://localhost:80/users/${userId}/posts`
+        `https://savannah-backend-production.up.railway.app/users/${userId}/posts`
     )
     if (response.type === "error") {
         throw new Error(response.message || "Unknown error");
@@ -74,7 +74,7 @@ export const handleFetchAllPostsByUser = async (userId: string) => {
 export const handleUserPostAction = async (userId: string, payload: any) => {
     const response = await apiRequest(
         'post',
-        `http://localhost:80/users/posts/add/${userId}`,
+        `https://savannah-backend-production.up.railway.app/users/posts/add/${userId}`,
         payload
     )
     if (response.type === "error") {
