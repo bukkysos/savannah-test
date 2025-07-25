@@ -5,16 +5,15 @@ import type { PostsProps } from '../util/types';
 export const PostsCard: React.FC<{ post: PostsProps }> = ({ post }) => {
     return (
         <div
-            key={post.id}
             className="relative rounded-xl border border-gray-200
                                 bg-white shadow p-6 min-h-[240px] flex flex-col">
             {/* Delete Icon */}
             <button className="absolute top-3 right-3 text-gray-300 hover:text-red-400 transition" title="Delete">
                 <FiTrash2 size={18} />
             </button>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">{post.title}</h2>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">{post?.title}</h2>
             <p className="text-gray-500 text-base leading-snug line-clamp-5">
-                {post.body}
+                {post?.body}
             </p>
         </div>
     )

@@ -37,8 +37,5 @@ export interface PaginationProps {
 export interface NotificationProps {
   message: string;
   description?: string;
-  publishingSuccess?: boolean;
-  publishingError?: boolean;
-  success: boolean;
-  error: boolean;
+  type: "success" | "error" | "pending";
 }

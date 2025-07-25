@@ -13,15 +13,18 @@ import { Notification } from '../components/notification';
 export const UserPost: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [publishing, setPublishing] = useState<boolean>(false);
-    const [publishingStatus, setPublishingStatus] = useState<{ success: boolean, error: boolean, message: string }>({ success: false, error: false, message: '' });
+    const [publishingStatus, setPublishingStatus] =
+        useState<{ success: boolean, error: boolean, message: string }>(
+            { success: false, error: false, message: '' }
+        );
     const location = useLocation();
     const myData = location.state;
 
-    const { data: postsData, isLoading, isError, error, isSuccess, refetch } = useQuery({
+    const { data: postsData, isLoading, isError, error, isSuccess, status,  refetch } = useQuery({
         queryKey: ['postsByUser', myData?.id],
         queryFn: () => handleFetchAllPostsByUser(`${myData?.id}`),
         enabled: !!myData?.id,
-        placeholderData: (prevData) => prevData,
+        // placeholderData: (prevData) => prevData,
         refetchOnWindowFocus: false
     });
 
@@ -63,17 +66,14 @@ export const UserPost: React.FC = () => {
             <Notification
                 message={
                     isSuccess
-                        ? "Post published successfully."
-                        : "Failed to publish post."
+                        ? "Operation successful"
+                        : "Unsuccessful operation"
                 }
                 description={
                     isError ? error?.message ?? publishingStatus?.message :
                         postsData?.message ?? publishingStatus.message
                 }
-                publishingSuccess={publishingStatus.success}
-                publishingError={publishingStatus.error}
-                success={publishingStatus.success || isSuccess}
-                error={publishingStatus.error || isError }
+                type={status}
             />
             {isLoading ? <PageLoader /> :
                 <>
@@ -103,8 +103,10 @@ export const UserPost: React.FC = () => {
                         {/* New Post Card */}
                         <NewPostsCard setShowModal={setShowModal} />
                         {/* Post Cards */}
-                        {postsData?.data?.data?.map((post: PostsProps) => (
-                            <PostsCard key={post.id} post={post} />
+                        {postsData?.data?.data?.map(({post, index}: {post: PostsProps, index: number}) => (
+                            <React.Fragment key={post?.id + index}>
+                                <PostsCard post={post} />
+                            </React.Fragment>
                         ))}
                     </div>
                 </>
